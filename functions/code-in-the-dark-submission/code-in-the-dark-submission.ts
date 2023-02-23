@@ -65,6 +65,34 @@ const handler: Handler = async (event) => {
     // Create file
     await axios.put(url, body, { headers });
     console.log(`File ${filename} created/updated`);
+
+    // Update the index file to link to the new page
+    const linkToPage = `<p><a href="./${filename}">${filename}</a></p>\n`;
+    const indexUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO}/contents/index.html`;
+    const indexFileResponse = await axios.get(url, { headers }).catch(() => null);
+
+    const updateIndexFile = async (newContent: string, existingSha?: string) => {
+        const indexUpdateBody: FileContentPutBody = {
+            message: 'Update index file',
+            content: Buffer.from(newContent).toString('base64'),
+            sha: existingSha,
+        }
+        await axios.put(indexUrl, indexUpdateBody, { headers });
+        console.log(`Created/Updated index with link to ${filename}`);
+    }
+
+    // If the file doesn't exist, we create a new one with, otherwise add the link to the file's contents if it doesn't already exist
+    if (indexFileResponse) {
+        const indexFileContent = atob(indexFileResponse.data.content);
+        if (!indexFileContent.includes(linkToPage)) {
+            await updateIndexFile(indexFileContent + linkToPage, indexFileResponse.data.sha);
+        } else {
+            console.log(`Index file already has link to ${filename}`);
+        }
+    } else {
+        await updateIndexFile(linkToPage);
+    }
+
     return {
       statusCode: 200,
       body: JSON.stringify({
@@ -80,7 +108,7 @@ const handler: Handler = async (event) => {
         statusCode: 200,
         body: JSON.stringify({
           success: false,
-          message: `Error creating/updating ${filename}, original error: ${e.response.data.message}`,
+          message: `Error creating/updating ${filename} or index, original error: ${e.response.data.message}`,
         }),
       };
     }
