@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AceEditor from 'react-ace';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+// import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import clsx from 'clsx';
 
 import 'ace-builds/src-noconflict/mode-html';
@@ -57,14 +57,14 @@ const CodeInTheDark = (): JSX.Element => {
       const params = { name, discord, html: codeValue };
 
       // First, we email their submission so we have a record of it
-      const templateId = 'template_z0Z6Hki6';
-      const userId = 'user_WBY9ARn5353jWW0nKOxH9';
-      try {
-        await emailjs.send('gmail', templateId, params, userId);
-      } catch (err) {
-        const e = err as EmailJSResponseStatus;
-        errors.push(`🚫 Error (EmailJS): ${e.text}`);
-      }
+      // const templateId = 'template_z0Z6Hki6';
+      // const userId = 'user_WBY9ARn5353jWW0nKOxH9';
+      // try {
+      //   await emailjs.send('gmail', templateId, params, userId);
+      // } catch (err) {
+      //   const e = err as EmailJSResponseStatus;
+      //   errors.push(`🚫 Error (EmailJS): ${e.text}`);
+      // }
 
       // Then, we submit it to the serverless function that will compile and deploy their submissions
       try {
