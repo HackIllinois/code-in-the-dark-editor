@@ -1,0 +1,4 @@
+[[redirects]]
+    from = "/submissions-2023/*"
+    to = "https://code-in-the-dark-submissions-2023.netlify.app/:splat"
+    status = 200
