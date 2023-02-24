@@ -69,7 +69,7 @@ const handler: Handler = async (event) => {
     // Update the index file to link to the new page
     const linkToPage = `<p><a href="./${filename}">${filename}</a></p>\n`;
     const indexUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO}/contents/index.html`;
-    const indexFileResponse = await axios.get(url, { headers }).catch(() => null);
+    const indexFileResponse = await axios.get(indexUrl, { headers }).catch(() => null);
 
     const updateIndexFile = async (newContent: string, existingSha?: string) => {
         const indexUpdateBody: FileContentPutBody = {
