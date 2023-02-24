@@ -83,8 +83,7 @@ const handler: Handler = async (event) => {
 
     // If the file doesn't exist, we create a new one with, otherwise add the link to the file's contents if it doesn't already exist
     if (indexFileResponse) {
-      console.log(`test: ${JSON.stringify(indexFileResponse.data.content)}`);
-      const indexFileContent = atob(indexFileResponse.data.content);
+      const indexFileContent = Buffer.from(indexFileResponse.data.content, 'base64').toString();
       if (!indexFileContent.includes(linkToPage)) {
           await updateIndexFile(indexFileContent + linkToPage, indexFileResponse.data.sha);
       } else {
