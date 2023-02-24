@@ -59,7 +59,6 @@ const handler: Handler = async (event) => {
   if (fileResponse) {
     console.log(`File ${filename} already exists, updating it`);
     body.sha = fileResponse.data.sha;
-    console.log(`File Response: ${JSON.stringify(fileResponse)}`);
   }
 
   try {
@@ -84,12 +83,13 @@ const handler: Handler = async (event) => {
 
     // If the file doesn't exist, we create a new one with, otherwise add the link to the file's contents if it doesn't already exist
     if (indexFileResponse) {
-        const indexFileContent = atob(indexFileResponse.data.content);
-        if (!indexFileContent.includes(linkToPage)) {
-            await updateIndexFile(indexFileContent + linkToPage, indexFileResponse.data.sha);
-        } else {
-            console.log(`Index file already has link to ${filename}`);
-        }
+      console.log(`test: ${JSON.stringify(indexFileResponse.data.content)}`);
+      const indexFileContent = atob(indexFileResponse.data.content);
+      if (!indexFileContent.includes(linkToPage)) {
+          await updateIndexFile(indexFileContent + linkToPage, indexFileResponse.data.sha);
+      } else {
+          console.log(`Index file already has link to ${filename}`);
+      }
     } else {
         await updateIndexFile(linkToPage);
     }
