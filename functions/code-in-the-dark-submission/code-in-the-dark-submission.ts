@@ -59,6 +59,7 @@ const handler: Handler = async (event) => {
   if (fileResponse) {
     console.log(`File ${filename} already exists, updating it`);
     body.sha = fileResponse.data.sha;
+    console.log(`File Response: ${JSON.stringify(fileResponse)}`);
   }
 
   try {
