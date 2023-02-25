@@ -117,10 +117,20 @@ const CodeInTheDark = (): JSX.Element => {
         />
 
         <div className={styles.rules}>
+          <h3>Overview</h3>
+          <ul>
+            <li>5 minute demo</li>
+            <li>5 minutes to research</li>
+            <li>25 minutes to code</li>
+            <li>15 minutes for judging</li>
+          </ul>
+
           <h3>Rules</h3>
           <ul>
             <li>You are allowed to use all tools available. This includes a text editor to preview your website.</li>
             <li>You must submit all your code through this editor (this means all CSS and JS must be included in this HTML file in &lt;style&gt; and &lt;script&gt;)</li>
+            <li>You can work in teams of 2</li>
+            <li>There will be 5 winners</li>
           </ul>
 
           <h3>Tips</h3>
