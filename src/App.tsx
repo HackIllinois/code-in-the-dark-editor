@@ -136,7 +136,7 @@ const CodeInTheDark = (): JSX.Element => {
           <h3>Tips</h3>
           <ul>
             <li>You can use a website like <a href="https://htmledit.squarefree.com/" target="_blank" rel="noreferrer">https://htmledit.squarefree.com/</a> to preview your code</li>
-            <li>The images can be found at <a href="https://codeinthedark.hackillinois.org/submissions-2023/images/" target="_blank" rel="noreferrer">https://codeinthedark.hackillinois.org/submissions-2023/images/</a></li>
+            <li>The images can be found at <a href="https://codeinthedark.hackillinois.org/submissions/images/" target="_blank" rel="noreferrer">https://codeinthedark.hackillinois.org/submissions/images/</a></li>
           </ul>
 
           <h3>Submit</h3>
