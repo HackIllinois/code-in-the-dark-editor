@@ -4,7 +4,12 @@
 import { Handler } from '@netlify/functions';
 import axios, { AxiosError } from 'axios';
 
-const { GITHUB_TOKEN, GITHUB_REPO, GITHUB_REPO_OWNER } = process.env;
+// GITHUB_TOKEN is the personal access token with write access to the submissions repo
+// GITHUB_REPO is the name of the submissions repo
+// GITHUB_REPO_OWNER is the owner of the submissions repo
+// SUBMISSIONS_PATH is the path where the submissions page will be available at,
+// should match the redirect (to the submissions repo deployment) in netlify.toml
+const { GITHUB_TOKEN, GITHUB_REPO, GITHUB_REPO_OWNER, SUBMISSIONS_PATH = "/submissions" } = process.env;
 
 type BodyParams = {
   discord: string;
@@ -67,7 +72,7 @@ const handler: Handler = async (event) => {
     console.log(`File ${filename} created/updated`);
 
     // Update the index file to link to the new page
-    const linkToPage = `<p><a href="./${filename}">${filename}</a></p>\n`;
+    const linkToPage = `<p><a href="${SUBMISSIONS_PATH}/${filename}">${filename}</a></p>\n`;
     const indexUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO}/contents/index.html`;
     const indexFileResponse = await axios.get(indexUrl, { headers }).catch(() => null);
 
