@@ -143,7 +143,7 @@ const CodeInTheDark = (): JSX.Element => {
           <div className={styles.submit}>
             <p>Name:</p>
             <input type="text" id="name-input" name="name" onChange={({ target: { value } }) => setName(value)} />
-            <p>Discord Username (e.g. Pat#6154):</p>
+            <p>Discord Username (e.g. Pat.patty):</p>
             <input type="text" id="discord-input" name="discord" onChange={({ target: { value } }) => setDiscord(value)} />
             <button type="button" onClick={handleSubmit}>Submit</button>
             <p className={clsx(styles.status)}>
