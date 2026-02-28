@@ -52,7 +52,7 @@ const handler: Handler = async (event) => {
   const filename = `${discord.replace('#', '')}.html`;
   const fileContents = `<!--Name: ${name}-->${html}`;
 
-  const url = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO}/contents/${filename}`;
+  const url = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO}/contents/${SUBMISSIONS_PATH}/${filename}`;
   const headers = { Authorization: `token ${GITHUB_TOKEN}` };
   const body: FileContentPutBody = {
     message: `Add/Update ${filename}`,
